@@ -1,7 +1,6 @@
 import StructuredDataMethods as Structure
 from sklearn.neighbors import NearestNeighbors
 import numpy as np
-from stl import mesh
 import os,fnmatch,csv
 import vtk
 import scipy as sc
@@ -66,13 +65,9 @@ def Mode_Filtering(data,stat_filtering_nearest_neighbor_num,stdev_threshold_mult
 	print('There are '+str(len(pass_index[pass_index!=0]))+' vectors left')
 	for file in range(len(data)):
 		file_pass_index = pass_index[file_index_regions[file]:file_index_regions[file+1]]-file_index_regions[file]
-		print(np.shape(file_pass_index))
 		file_pass_index = file_pass_index[file_pass_index>0]
-		print(np.shape(file_pass_index))
 		individual_file = np.asarray(data[file])
-		print(np.shape(individual_file))
 		filtered_data[file] = individual_file[file_pass_index,:]
-		print(np.shape(filtered_data[file]))
 	return filtered_data
 
 def Median_Filtering(data,stat_filtering_nearest_neighbor_num,stdev_threshold_multiplier):
